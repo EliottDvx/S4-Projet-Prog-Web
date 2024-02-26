@@ -13,7 +13,6 @@ import ScaleLoaderVue from 'vue-spinner/src/ScaleLoader.vue';
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
   </header>
