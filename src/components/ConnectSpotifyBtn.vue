@@ -3,17 +3,17 @@ import '@/assets/main.css'
 
 const generateRandomString = (length) => {
     let text = "";
-    const possible =
+    const chars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     for (let i = 0; i < length; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        text += chars.charAt(Math.floor(Math.random() * chars.length));
     }
 
     return text;
 };
 
-const authRedirect = () => {
+const authRedirect = async () => {
     const client_id = import.meta.env.VITE_CLIENT_ID;
     const redirect_uri = import.meta.env.VITE_REDIRECT_URI;
     const state = generateRandomString(16);

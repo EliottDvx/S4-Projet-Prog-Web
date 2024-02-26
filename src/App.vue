@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import ScaleLoaderVue from 'vue-spinner/src/ScaleLoader.vue';
 </script>
 
 <template>
@@ -18,8 +19,7 @@ import HelloWorld from './components/HelloWorld.vue'
   </header>
 
   <RouterView />
-
-  <scale-loader :loading="loading" :color="color" :height="height" :width="width"></scale-loader>
+  <ScaleLoaderVue :height="100" :width="100"></ScaleLoaderVue>
 </template>
 
 <style scoped>
