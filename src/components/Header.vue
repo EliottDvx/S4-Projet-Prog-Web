@@ -16,7 +16,9 @@ fetch('https://api.spotify.com/v1/me', {
 <template>
     <header>
         <div class="user-profile">
-            <img :src="user?.images[0]?.url" alt="User's profile picture" />
+            <div class="user-img">
+                <img :src="user?.images[0]?.url" alt="User's profile picture" />
+            </div>
             <span>{{ user?.display_name }}</span>
         </div>
         <nav>
@@ -31,6 +33,11 @@ fetch('https://api.spotify.com/v1/me', {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.user-img img {
+    overflow: hidden;
+    border-radius: 999px;
 }
 
 </style>
