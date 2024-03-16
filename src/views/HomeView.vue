@@ -15,7 +15,6 @@ const selectedTimeRange = ref('medium_term');
       <option value="medium_term" selected="selected">Medium term (6 months)</option>
       <option value="long_term">Long term (Several years)</option>
     </select>
-    <span>{{ selectedTimeRange }}</span>
     <Favs :range="selectedTimeRange" />
   </main>
 </template>

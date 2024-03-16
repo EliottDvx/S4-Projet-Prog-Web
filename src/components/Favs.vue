@@ -1,45 +1,27 @@
 <script setup>
+import { ref, toRef, watchEffect } from 'vue';
+
 import { cookieValueOrNull } from '@/utils/cookieCheck';
 const token = cookieValueOrNull('accessToken');
-
-import { onMounted, ref, toRef } from 'vue';
-import { computed, watch } from 'vue';
-
 
 const props = defineProps(['range']);
 
 const selectedTimeRange = toRef(props, 'range');
 
-console.log(selectedTimeRange.value);
-
 const favTracks = ref(null);
 
-async function fetchTopTrack(selectedTimeRange) {
-    const topTrack = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=${selectedTimeRange}`, {
+watchEffect(async () => {
+    favTracks.value = await (await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=${selectedTimeRange.value}`, {
         headers: {
             'Authorization': 'Bearer ' + token
         }
-    })
-
-    return topTrack.json()
-}
-
-onMounted(
-    async () => {
-        favTracks.value = await fetchTopTrack(selectedTimeRange.value);
-
-    }
-)
-
-watch(props, async (newProps, oldProps) => {
-    favTracks.value = await fetchTopTrack(selectedTimeRange.value);
-});
+    })).json();
+})
 
 
 </script>
 
 <template>
-    <span>{{ selectedTimeRange }}</span>
     <h2>Your favorite tracks</h2>
     <ul>
         <li v-for="track in favTracks?.items" :key="track.id">
