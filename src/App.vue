@@ -4,7 +4,7 @@ import Header from '@/components/Header.vue';
 </script>
 
 <template>
-  <div v-if="$route.name != 'login'">
+  <div v-if="$route.name != 'login' && $route.name != 'callback'">
     <Header />
   </div>
   <RouterView />
