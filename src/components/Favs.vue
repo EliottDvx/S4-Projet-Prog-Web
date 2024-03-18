@@ -1,6 +1,7 @@
 <script setup>
 import { ref, toRef, watchEffect } from 'vue';
 
+import Track from '@/components/Track.vue';
 import { cookieValueOrNull } from '@/utils/cookieCheck';
 const token = cookieValueOrNull('accessToken');
 
@@ -24,10 +25,7 @@ watchEffect(async () => {
 <template>
     <h2>Your favorite tracks</h2>
     <ul>
-        <li v-for="track in favTracks?.items" :key="track.id">
-            <img :src="track.album.images[0].url" :alt="track.album.name + ' album cover'" />
-            <h2>{{ track.name }}</h2>
-            <p>{{ track.artists[0].name }}</p>
-        </li>
+        <Track v-for="track in favTracks?.items" :key="track.id" :title="track.name" :artist="track.artists[0].name"
+            :album="track.album.name" :image="track.album.images[0].url" />
     </ul>
 </template>
