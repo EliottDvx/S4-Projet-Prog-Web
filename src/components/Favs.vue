@@ -10,6 +10,7 @@ const props = defineProps(['range']);
 const selectedTimeRange = toRef(props, 'range');
 
 const favTracks = ref(null);
+const showAll = ref(false);
 
 watchEffect(async () => {
     favTracks.value = await (await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=${selectedTimeRange.value}`, {
@@ -19,15 +20,20 @@ watchEffect(async () => {
     })).json();
 })
 
-
+const showAllToggle = () => {
+    showAll.value = true;
+}
 </script>
 
 <template>
     <h2>Your favorite tracks</h2>
     <ul>
-        <Track v-for="track in favTracks?.items" :key="track.id" :title="track.name" :artist="track.artists[0].name"
-            :album="track.album.name" :image="track.album.images[0].url" />
+        <template v-for="(track, index) in favTracks?.items" :key="track.id">
+            <Track v-if="index < 6 || showAll" :title="track.name" :artist="track.artists[0].name"
+                :album="track.album.name" :image="track.album.images[0].url" :date="track.album.release_date" />
+        </template>
     </ul>
+    <button @click="showAllToggle" v-if="showAll == false">Show all</button>
 </template>
 
 <style scoped>
