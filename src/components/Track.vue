@@ -3,7 +3,8 @@ const props = defineProps({
     title: String,
     artist: String,
     album: String,
-    image: String
+    image: String,
+    date: String
 })
 </script>
 
@@ -11,7 +12,7 @@ const props = defineProps({
     <li>
         <div class="play-overlay">
             <button>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
                     <path d="M3 22v-20l18 10-18 10z" />
                 </svg>
             </button>
@@ -20,6 +21,7 @@ const props = defineProps({
         <div class="infos">
             <h3>{{ title }}</h3>
             <p>{{ artist }} - {{ album }}</p>
+            <p>{{ date }}</p>
         </div>
     </li>
 </template>
@@ -27,9 +29,10 @@ const props = defineProps({
 <style scoped>
 li {
     display: flex;
-    gap: 1rem;
     align-items: center;
     margin-bottom: 1rem;
+    gap: 1rem;
+    width: 100%;
 }
 
 img {
@@ -58,7 +61,31 @@ img {
     transition: opacity 0.3s;
 }
 
+.play-overlay button {
+    background-color: transparent;
+    border: none;
+    transition: transform 0.3s;
+}
+
 li:hover .play-overlay {
+    cursor: pointer;
     opacity: 1;
+}
+
+@media (min-width: 1024px) {
+    li {
+        width: 40%;
+        margin-bottom: 2rem;
+    }
+
+    img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .play-overlay {
+        width: 200px;
+        height: 200px;
+    }
 }
 </style>

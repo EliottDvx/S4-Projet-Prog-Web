@@ -16,10 +16,10 @@ fetch('https://api.spotify.com/v1/me', {
 <template>
     <header>
         <div class="user-profile">
-            <div class="user-img">
+            <a class="user-img" href="/">
                 <img :src="user?.images[0]?.url" alt="User's profile picture" />
-            </div>
-            <span>{{ user?.display_name }}</span>
+            </a>
+            <span class="user-name">{{ user?.display_name }}</span>
         </div>
         <nav>
             <RouterLink to="/">Home</RouterLink>
@@ -28,16 +28,27 @@ fetch('https://api.spotify.com/v1/me', {
 </template>
 
 <style scoped>
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 3rem;
+
+}
 
 .user-profile {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
+}
+
+.user-img:hover {
+    opacity: 0.7;
 }
 
 .user-img img {
     overflow: hidden;
     border-radius: 999px;
 }
-
 </style>

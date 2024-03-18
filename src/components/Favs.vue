@@ -29,3 +29,21 @@ watchEffect(async () => {
             :album="track.album.name" :image="track.album.images[0].url" />
     </ul>
 </template>
+
+<style scoped>
+ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+@media (min-width: 1024px) {
+    ul {
+        gap: 2rem;
+    }
+}
+</style>
