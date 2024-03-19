@@ -1,5 +1,6 @@
 <script setup>
 import FavTracks from '@/components/FavTracks.vue';
+import FavArtists from '@/components/FavArtists.vue';
 
 import { ref } from 'vue';
 
@@ -16,5 +17,6 @@ const selectedTimeRange = ref('medium_term');
       <option value="long_term">Long term (Several years)</option>
     </select>
     <FavTracks :range="selectedTimeRange" />
+    <FavArtists :range="selectedTimeRange" />
   </main>
 </template>

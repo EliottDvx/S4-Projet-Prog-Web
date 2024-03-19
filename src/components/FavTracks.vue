@@ -30,7 +30,7 @@ const showAllToggle = () => {
     <ul>
         <template v-for="(track, index) in favTracks?.items" :key="track.id">
             <Track v-if="index < 6 || showAll" :title="track.name" :artist="track.artists[0].name"
-                :album="track.album.name" :image="track.album.images[0].url" :date="track.album.release_date" />
+                :album="track.album.name" :image="track.album.images[1].url" :date="track.album.release_date" />
         </template>
     </ul>
     <button @click="showAllToggle" v-if="showAll == false">Show all</button>
