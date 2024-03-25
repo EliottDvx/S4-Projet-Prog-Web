@@ -1,17 +1,17 @@
 <script setup>
-    import ConnectSpotifyBtn from '@/components/ConnectSpotifyBtn.vue';
+import ConnectSpotifyBtn from '@/components/ConnectSpotifyBtn.vue';
 
-    import { useRouter, useRoute } from 'vue-router'
-    import { onMounted } from 'vue'
-    import { cookieValueOrNull } from '@/utils/cookieCheck'
+import { useRouter, useRoute } from 'vue-router'
+import { onMounted } from 'vue'
+import { cookieValueOrNull } from '@/utils/cookieCheck'
 
-    const router = useRouter()
-    const route = useRoute()
+const router = useRouter()
+const route = useRoute()
 
-    onMounted(() => {
-        cookieValueOrNull('accessToken')
+onMounted(() => {
+    cookieValueOrNull('accessToken')
         ? router.replace('/') : {}
-    })
+})
 
 </script>
 
@@ -20,3 +20,12 @@
         <ConnectSpotifyBtn />
     </main>
 </template>
+
+<style scoped>
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+</style>
