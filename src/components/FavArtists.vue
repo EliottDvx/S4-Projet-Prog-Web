@@ -7,6 +7,8 @@ import Track from '@/components/Track.vue';
 import { cookieValueOrNull } from '@/utils/cookieCheck';
 const token = cookieValueOrNull('accessToken');
 
+import Artist from '@/components/Artist.vue';
+
 const props = defineProps(['range']);
 
 const selectedTimeRange = toRef(props, 'range');
@@ -31,10 +33,7 @@ const showAllToggle = () => {
     <h2>Your favorite artists</h2>
     <ul>
         <template v-for="(artist, index) in favArtists?.items" :key="artist.id">
-            <li v-if="index < 6 || showAll">
-                {{ artist.name }}
-                <img :src="artist.images[1].url" :alt="artist.name" />
-            </li>
+            <Artist v-if="index < 6 || showAll" :name="artist.name" :image="artist.images[1].url" />
         </template>
     </ul>
     <button @click="showAllToggle" v-if="showAll == false">Show all</button>
