@@ -75,7 +75,6 @@ li:hover .play-overlay {
 @media (min-width: 1024px) {
     li {
         width: 40%;
-        margin-bottom: 2rem;
     }
 
     img {
