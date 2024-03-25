@@ -1,4 +1,6 @@
 <script setup>
+import "@/assets/favStyle.css";
+
 import { ref, toRef, watchEffect } from 'vue';
 
 import Track from '@/components/Track.vue';
@@ -35,21 +37,3 @@ const showAllToggle = () => {
     </ul>
     <button @click="showAllToggle" v-if="showAll == false">Show all</button>
 </template>
-
-<style scoped>
-ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
-}
-
-@media (min-width: 1024px) {
-    ul {
-        gap: 2rem;
-    }
-}
-</style>
