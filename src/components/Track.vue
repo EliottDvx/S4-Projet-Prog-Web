@@ -6,7 +6,9 @@ const props = defineProps({
     image: String,
     date: String
 })
+const dateYear = new Date(props.date).getFullYear();
 </script>
+
 
 <template>
     <li>
@@ -21,7 +23,7 @@ const props = defineProps({
         <div class="infos">
             <h3>{{ title }}</h3>
             <p>{{ artist }} - {{ album }}</p>
-            <p>{{ date }}</p>
+            <p>{{ dateYear }}</p>
         </div>
     </li>
 </template>
