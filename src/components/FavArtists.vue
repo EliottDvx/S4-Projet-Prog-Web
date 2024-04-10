@@ -36,5 +36,7 @@ const showAllToggle = () => {
             <Artist v-if="index < 6 || showAll" :name="artist.name" :image="artist.images[1].url" />
         </template>
     </ul>
-    <button @click="showAllToggle" v-if="showAll == false">Show all</button>
+    <div class="btnContainer">
+        <button class="button" @click="showAllToggle" v-if="showAll == false">Show all</button>
+    </div>
 </template>

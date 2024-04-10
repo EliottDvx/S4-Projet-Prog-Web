@@ -25,29 +25,44 @@ const selectedTimeRange = ref('medium_term');
 </template>
 
 <style scoped>
+@import '@/assets/base.css';
+
 .selectContainer {
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
 }
 
 select {
   appearance: none;
   overflow-y: auto;
   text-align: center;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
+  background-color: var(--color-background);
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
   width: 100%;
-  outline: none
+  outline: none;
+  transition: .4s;
 }
 
 select option {
   padding: 1em;
+  transition: .4s;
+}
+
+select option:hover {
+  background-color: var(--color-background-mute);
 }
 
 select option:checked {
-  background-color: #aaa;
+  background-color: var(--green-primary);
+}
+
+select option:focus {
+  background-color: var(--green-primary);
 }
 
 @media (min-width: 1024px) {

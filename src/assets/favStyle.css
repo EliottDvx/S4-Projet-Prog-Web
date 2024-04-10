@@ -1,3 +1,5 @@
+@import './base.css';
+
 ul {
     display: flex;
     flex-direction: row;
@@ -6,6 +8,33 @@ ul {
     gap: 1rem;
     list-style: none;
     padding: 0;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.button {
+    background-color: var(--color-background); 
+    color: white; 
+    border: 2px solid #04AA6D;
+    border-radius: 999px;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+  
+.button:hover {
+    background-color: #04AA6D;
+    color: white;
 }
 
 @media (min-width: 1024px) {

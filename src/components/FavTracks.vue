@@ -35,5 +35,7 @@ const showAllToggle = () => {
                 :album="track.album.name" :image="track.album.images[1].url" :date="track.album.release_date" />
         </template>
     </ul>
-    <button @click="showAllToggle" v-if="showAll == false">Show all</button>
+    <div class="btnContainer">
+        <button class="button" @click="showAllToggle" v-if="showAll == false">Show all</button>
+    </div>
 </template>
