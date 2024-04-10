@@ -20,6 +20,11 @@ const router = createRouter({
       name: "callback",
       component: () => import("@/views/CallbackView.vue"),
     },
+    {
+      path: "/recent",
+      name: "recent",
+      component: () => import("@/views/RecentView.vue"),
+    }
   ],
 });
 

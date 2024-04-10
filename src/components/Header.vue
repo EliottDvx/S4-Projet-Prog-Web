@@ -22,7 +22,8 @@ fetch('https://api.spotify.com/v1/me', {
             <span class="user-name">{{ user?.display_name }}</span>
         </div>
         <nav>
-            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/">Main Board</RouterLink>
+            <RouterLink to="/recent">Recently Played</RouterLink>
         </nav>
     </header>
 </template>
@@ -35,6 +36,20 @@ header {
     padding: 1rem;
     gap: 3rem;
 
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: .4s;
+}
+
+nav a:hover {
+    color: var(--green-primary);
+}
+
+.router-link-active {
+    color: var(--green-primary);
 }
 
 .user-profile {
