@@ -1,4 +1,21 @@
 <script setup>
+import Track from '@/components/Track.vue';
+
+import { ref, toRef, watchEffect } from 'vue';
+
+import { cookieValueOrNull } from '@/utils/cookieCheck';
+
+const token = cookieValueOrNull('accessToken');
+
+const recentTracks = ref(null);
+
+watchEffect(async () => {
+    recentTracks.value = await (await fetch('https://api.spotify.com/v1/me/player/recently-played', {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })).json();
+})
 </script>
 
 <template>
@@ -9,7 +26,4 @@
                 :image="track.track.album.images[1].url" :date="track.played_at" />
         </template>
     </ul>
-    <div class="btnContainer">
-        <button class="button" @click="showAllToggle" v-if="showAll == false">Show all</button>
-    </div>
 </template>
