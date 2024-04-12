@@ -42,6 +42,7 @@ nav a {
     color: white;
     text-decoration: none;
     transition: .4s;
+    margin: 0 1rem;
 }
 
 nav a:hover {

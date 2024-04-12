@@ -1,4 +1,6 @@
 <script setup>
+import "@/assets/favStyle.css";
+
 import Track from '@/components/Track.vue';
 
 import { ref, toRef, watchEffect } from 'vue';
@@ -23,7 +25,7 @@ watchEffect(async () => {
     <ul>
         <template v-for="(track, index) in recentTracks?.items" :key="track.played_at">
             <Track :title="track.track.name" :artist="track.track.artists[0].name" :album="track.track.album.name"
-                :image="track.track.album.images[1].url" :date="track.played_at" />
+                :image="track.track.album.images[1].url" :date="track.track.album.release_date" />
         </template>
     </ul>
 </template>
