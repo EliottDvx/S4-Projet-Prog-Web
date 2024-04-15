@@ -13,6 +13,7 @@ const recentTracks = ref(null);
 const years = ref([]);
 const selectedYear = ref("");
 const selectedSort = ref('played-date');
+const orderBy = ref('desc');
 
 onMounted(async () => {
     recentTracks.value = await (await fetch('https://api.spotify.com/v1/me/player/recently-played', {
@@ -28,6 +29,8 @@ onMounted(async () => {
 })
 
 watch(selectedSort, () => {
+    orderBy.value = 'desc';
+
     if (selectedSort.value === 'played-date') {
         recentTracks.value.items.sort((a, b) => new Date(b.played_at) - new Date(a.played_at));
     } else if (selectedSort.value === 'alphabet') {
@@ -36,6 +39,11 @@ watch(selectedSort, () => {
         recentTracks.value.items.sort((a, b) => new Date(b.track.album.release_date) - new Date(a.track.album.release_date));
     }
 })
+
+const toggleOrder = () => {
+    orderBy.value = orderBy.value === 'desc' ? 'asc' : 'desc';
+    recentTracks.value.items.reverse();
+}
 
 </script>
 
@@ -51,11 +59,14 @@ watch(selectedSort, () => {
         </div>
         <div>
             <p>Sort by:</p>
-            <select v-model="selectedSort">
-                <option value="played-date" selected>Last played</option>
-                <option value="release-date">Release date</option>
-                <option value="alphabet">Alphabetical order</option>
-            </select>
+            <div class="container-row">
+                <select v-model="selectedSort">
+                    <option value="played-date" selected>Last played</option>
+                    <option value="release-date">Release date</option>
+                    <option value="alphabet">Alphabetical order</option>
+                </select>
+                <button class="toggleArrow" @click="toggleOrder"><span :class="orderBy">↓</span></button>
+            </div>
         </div>
     </div>
     <p v-if="!recentTracks">Loading...</p>
@@ -80,6 +91,11 @@ watch(selectedSort, () => {
     margin-bottom: 1rem;
 }
 
+.container-row {
+    display: flex;
+    gap: 1rem;
+}
+
 select {
     background-color: var(--color-background);
     color: white;
@@ -94,6 +110,35 @@ select {
 
 select:hover {
     background-color: var(--color-background-mute);
+}
+
+.toggleArrow {
+    background-color: var(--color-background);
+    color: white;
+    border: 2px solid var(--green-primary);
+    border-radius: 999px;
+    padding: 0 20px;
+    cursor: pointer;
+    outline: none;
+    transition: .4s;
+    font-size: 1.8rem;
+}
+
+.toggleArrow:hover {
+    background-color: var(--color-background-mute);
+}
+
+.toggleArrow span {
+    display: inline-block;
+    transition: .4s;
+}
+
+.asc {
+    transform: rotate(0);
+}
+
+.desc {
+    transform: rotate(180deg);
 }
 
 .list-move,
