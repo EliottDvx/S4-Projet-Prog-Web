@@ -22,8 +22,6 @@ onMounted(async () => {
         }
     })).json();
 
-    console.log(recentTracks.value.items);
-
     const yearsSet = new Set(recentTracks.value.items.map(track => track.track.album.release_date.slice(0, 4)));
     years.value = Array.from(yearsSet).sort().reverse();
 })
