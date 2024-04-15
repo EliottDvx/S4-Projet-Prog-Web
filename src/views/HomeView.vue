@@ -2,10 +2,13 @@
 import FavTracks from '@/components/FavTracks.vue';
 import FavArtists from '@/components/FavArtists.vue';
 
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
-const selectedTimeRange = ref('medium_term');
+const selectedTimeRange = ref(localStorage.getItem('selectedTimeRange') || 'medium_term');
 
+watch(selectedTimeRange, (value) => {
+  localStorage.setItem('selectedTimeRange', value);
+});
 </script>
 
 <template>
