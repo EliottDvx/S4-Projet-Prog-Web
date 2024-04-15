@@ -15,7 +15,7 @@ const selectedTimeRange = ref('medium_term');
     <div class="selectContainer">
       <select v-model="selectedTimeRange" size="3">
         <option value="short_term">Short term (4 weeks)</option>
-        <option value="medium_term" selected="selected">Medium term (6 months)</option>
+        <option value="medium_term" selected>Medium term (6 months)</option>
         <option value="long_term">Long term (Several years)</option>
       </select>
     </div>
