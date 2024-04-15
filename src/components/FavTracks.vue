@@ -29,12 +29,13 @@ const showAllToggle = () => {
 
 <template>
     <h2>Your favorite tracks</h2>
-    <ul>
+    <p v-if="!favTracks">Loading...</p>
+    <TransitionGroup name="list" tag="ul">
         <template v-for="(track, index) in favTracks?.items" :key="track.id">
             <Track v-if="index < 6 || showAll" :title="track.name" :artist="track.artists[0].name"
                 :album="track.album.name" :image="track.album.images[1].url" :date="track.album.release_date" />
         </template>
-    </ul>
+    </TransitionGroup>
     <div class="btnContainer">
         <button class="button" @click="showAllToggle" v-if="showAll == false">Show all</button>
     </div>

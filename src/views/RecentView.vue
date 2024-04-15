@@ -21,6 +21,8 @@ onMounted(async () => {
         }
     })).json();
 
+    console.log(recentTracks.value.items);
+
     const yearsSet = new Set(recentTracks.value.items.map(track => track.track.album.release_date.slice(0, 4)));
     years.value = Array.from(yearsSet).sort().reverse();
 })
@@ -51,19 +53,19 @@ watch(selectedSort, () => {
             <p>Sort by:</p>
             <select v-model="selectedSort">
                 <option value="played-date" selected>Last played</option>
-                <option value="alphabet">Alphabetical order</option>
                 <option value="release-date">Release date</option>
+                <option value="alphabet">Alphabetical order</option>
             </select>
         </div>
     </div>
     <p v-if="!recentTracks">Loading...</p>
-    <ul>
-        <template v-for="(track, index) in  recentTracks?.items " :key="track.played_at">
-            <Track v-if="new Date(track.track.album.release_date).getFullYear() == selectedYear || selectedYear == ''"
-                :title="track.track.name" :artist="track.track.artists[0].name" :album="track.track.album.name"
-                :image="track.track.album.images[1].url" :date="track.track.album.release_date" />
+    <TransitionGroup name="list" tag="ul">
+        <template v-for="(entry, index) in  recentTracks?.items " :key="entry.played_at">
+            <Track v-if="new Date(entry.track.album.release_date).getFullYear() == selectedYear || selectedYear == ''"
+                :title="entry.track.name" :artist="entry.track.artists[0].name" :album="entry.track.album.name"
+                :image="entry.track.album.images[1].url" :date="entry.track.album.release_date" />
         </template>
-    </ul>
+    </TransitionGroup>
 </template>
 
 <style scoped>
@@ -92,6 +94,21 @@ select {
 
 select:hover {
     background-color: var(--color-background-mute);
+}
+
+.list-move,
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+}
+
+.list-leave-active {
+    position: absolute;
 }
 
 @media (min-width: 1024px) {
