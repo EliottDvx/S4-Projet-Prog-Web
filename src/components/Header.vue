@@ -31,11 +31,11 @@ fetch('https://api.spotify.com/v1/me', {
 <style scoped>
 header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
     gap: 3rem;
-
+    padding-bottom: 2rem;
 }
 
 nav a {
@@ -66,5 +66,27 @@ nav a:hover {
 .user-img img {
     overflow: hidden;
     border-radius: 999px;
+}
+
+@media (min-width: 1024px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .user-profile {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .user-name {
+        font-size: 1.5rem;
+    }
 }
 </style>
